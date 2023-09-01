@@ -1,4 +1,56 @@
-   Total_Stock_Value = Total_Stock_Value + ws.Cells(i, 7).Value
+Sub stock()
+   
+
+    
+    Dim Symbol_Name As String
+    Dim Total_Stock_Value As Double
+    Dim Summary_Table_Row As Integer
+    Dim Total_Open_Value As Double
+    Dim Total_Close_Value As Double
+    Dim Yearly_Change As Double
+    Dim Yearly_Percentage As Double
+    Dim Ticker_1_Index As Integer
+    Dim Ticker_2_Index As Integer
+    Dim Ticker_3_Index As Integer
+    
+    
+    Dim ws As Worksheet
+    
+    'start worksheet loop
+    
+    For Each ws In Worksheets
+    
+    
+    Total_Stock_Value = 0
+    Summary_Table_Row = 2
+    Yearly_Change = 0
+    Yearly_Percentage = 0
+    
+    'header row
+    ws.Range("I1").Value = "Ticker"
+    ws.Range("J1").Value = "Yearly Change"
+    ws.Range("K1").Value = "Percent Change"
+    ws.Range("L1").Value = "Total Stock Volume"
+    
+    LastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
+    
+    Total_Open_Value = ws.Cells(2, 3).Value
+    
+  
+
+    'Loop through all tickers
+    For i = 2 To LastRow
+        'If the current cell does not equal the cell value of the cell below
+        If ws.Cells(i + 1, 1).Value <> ws.Cells(i, 1).Value Then
+         
+            'Assign Values from Column A to Symbol Name
+            Symbol_Name = ws.Cells(i, 1).Value
+    
+            
+            'Add stock volumes to total variable
+            
+
+            Total_Stock_Value = Total_Stock_Value + ws.Cells(i, 7).Value
             
           
             
@@ -69,6 +121,11 @@
     Next ws
     
 End Sub
+
+
+
+
+
 
 
 
